@@ -25,6 +25,7 @@ namespace SeleniumUiTests
            _websiteURL = (string) TestContext.Properties["webAppUrl"];
         }
 
+        [Ignore]
         [TestMethod]
         [TestCategory("Selenium")]
         [DataRow("Adam John", "Marketing", "adam.john@email.com", "2423282992", "74 Avenue Tunis")]
