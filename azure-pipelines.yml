@@ -40,4 +40,5 @@ steps:
     command: 'publish'
     publishWebProjects: true
     arguments: '--no-restore --no-build --configuration $(BuildConfiguration) -o $(Build.ArtifactStagingDirectory)'
-    workingDirectory: '$(System.DefaultWorkingDirectory)'
+    modifyOutputPath: true
+    zipAfterPublish: true
