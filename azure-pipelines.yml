@@ -21,6 +21,14 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
+- task: SonarCloudPrepare@1
+  inputs:
+    SonarCloud: 'WebAppWithDatabaseDemo'
+    organization: 'mahmoudsalah0502'
+    scannerMode: 'MSBuild'
+    projectKey: 'Mahmoudsalah0502_DotNet-Core-Mvc-App'
+    projectName: 'DotNet-Core-Mvc-App'
+
 - task: DotNetCoreCLI@2
   displayName: 'Build ** C# Projects'
   inputs:
@@ -40,6 +48,12 @@ steps:
     publishWebProjects: True
     arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
     zipAfterPublish: True
+
+- task: SonarCloudAnalyze@1
+
+- task: SonarCloudPublish@1
+  inputs:
+    pollingTimeoutSec: '300'
 
 # this code takes all the files in $(Build.ArtifactStagingDirectory) and uploads them as an artifact of your build.
 - task: PublishPipelineArtifact@1
